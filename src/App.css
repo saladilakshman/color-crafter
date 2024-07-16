@@ -1,0 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+* {
+  margin: 0;
+}
+body {
+  @apply font-lato relative;
+}
+.palette-button {
+  @apply px-4 lg:px-6 py-1 lg:py-2 rounded-full bg-emerald-600 text-white flex justify-center items-center gap-1 text-base lg:text-xl hover:bg-emerald-700 active:bg-emerald-800 transition-colors;
+}
+.overlay {
+  @apply fixed inset-0 bg-gray-100/55 w-full h-screen flex flex-col justify-center items-center transition-all;
+}
+
+.add {
+  @apply px-4 py-2 bg-fuchsia-600 text-white rounded-lg my-1 font-lato disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:opacity-60;
+}
