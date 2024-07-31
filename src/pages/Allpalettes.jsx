@@ -2,13 +2,14 @@ import { AppColor } from "../App";
 import { IoMdAddCircle } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 export const AllPalettes = () => {
   const {
     state: { palettes },
     dispatch,
   } = useContext(AppColor);
   const navigate = useNavigate();
+
   return (
     <div className="container py-5 lg:px-40 px-2">
       <div className="flex justify-between items-center">

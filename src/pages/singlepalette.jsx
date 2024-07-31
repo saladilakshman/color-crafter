@@ -7,6 +7,7 @@ import { FaTrashAlt } from "react-icons/fa";
 import { Toastify } from "../components/toastify";
 import { toast } from "react-toastify";
 import { AppColor } from "../App";
+import "../App.css";
 export const SinglePalette = () => {
   const location = useLocation();
   const param = useParams();
@@ -42,7 +43,10 @@ export const SinglePalette = () => {
     }
   }, [palettedetails.colors.length]);
   const savedetails = () => {
-    dispatch({ type: "add-color-palette", payload: palettedetails });
+    dispatch({
+      type: "add-color-palette",
+      payload: palettedetails,
+    });
     dispatch({ type: "show-file-dialog" });
     navigate("/");
     setPalettedetails({
@@ -111,12 +115,14 @@ export const SinglePalette = () => {
             <div
               key={index}
               id={colorlist}
-              className="min-h-32 lg:min-h-96 text-transparent font-lato flex flex-col justify-center items-center text-white"
+              className="min-h-36 lg:min-h-96 text-transparent font-lato relative text-white"
               style={{ backgroundColor: colorlist }}
               onClick={() => toastify(colorlist)}
             >
-              {colorlist}
-              <div className="flex  lg:gap-4 gap-2 lg:text-xl text-base pt-4">
+              <h2 className=" lg:text-lg text-base text-center absolute  top-12 left-11 lg:top-40 lg:left-12">
+                {colorlist}
+              </h2>
+              <div className="absolute bottom-2 right-2 lg:gap-4 gap-2 lg:text-xl text-base pt-4">
                 <FaTrashAlt
                   onClick={(e) => {
                     e.stopPropagation();

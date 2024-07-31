@@ -1,4 +1,4 @@
-import { useReducer, createContext, useEffect } from "react";
+import { useReducer, createContext } from "react";
 import "./App.css";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import { AllPalettes } from "./pages/Allpalettes";
@@ -29,15 +29,23 @@ function App() {
       };
     }
     if (action.type === "add-color-palette") {
-      const isfound = state?.palettes.find(
-        (pln) => pln.name === action.payload.name
+      const existingPaletteIndex = state.palettes.findIndex(
+        (p) => p.createdAt === action.payload.createdAt
       );
+
+      if (existingPaletteIndex > -1) {
+        const updatedPalettes = [...state.palettes];
+        updatedPalettes[existingPaletteIndex] = action.payload;
+        return {
+          ...state,
+          palettes: updatedPalettes,
+        };
+      }
+
       return {
         ...state,
         showfiledialog: false,
-        palettes: isfound
-          ? state?.palettes.with(state?.palettes[isfound], action.payload)
-          : [...state.palettes, action.payload],
+        palettes: [...state.palettes, action.payload],
       };
     }
     if (action.type === "show-file-dialog") {
